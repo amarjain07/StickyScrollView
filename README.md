@@ -20,6 +20,32 @@ Add the dependency
 	}
 ```
 
+### Usage
+```
+	<com.amar.library.ui.StickyScrollView
+   		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+    		android:layout_height="match_parent"
+		app:stickyHeader="@+id/titleLayout"
+    		app:stickyFooter="@+id/buttonLayout">
+		...
+		<LinearLayout
+            		android:id="@+id/titleLayout"
+            		android:layout_width="match_parent"
+            		android:layout_height="wrap_content">
+			...
+        	</LinearLayout>		
+		<LinearLayout
+            		android:id="@+id/buttonLayout"
+            		android:layout_width="match_parent"
+            		android:layout_height="wrap_content">
+			...
+        	</LinearLayout>	
+		...
+	</com.amar.library.ui.StickyScrollView>
+	
+```
+
 ### Demo
 ![StickyScrollViewGif](demo/StickyScroll.gif)
 
