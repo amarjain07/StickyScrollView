@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.amar.library.ui.StickyScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:stickyFooter="@+id/buttons"
+    app:stickyHeader="@+id/title"
+    tools:context="com.amar.sample.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
+            android:src="@drawable/nike" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Title"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Description goes here"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:id="@+id/offer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Offer"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Offer Desc goes here"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Product Similar"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Similar goes here"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/save"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#535766"
+                android:drawableLeft="@mipmap/ic_wishlist"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="SAVE"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/buy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0BC6A0"
+                android:drawableLeft="@mipmap/ic_bag"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="BUY"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other product related info goes here!"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You can add more data here"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="More colors"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="220dp"
+                android:layout_weight="1"
+                android:src="@drawable/similar_1" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="620dp"
+                android:layout_weight="1"
+                android:src="@drawable/similar_2" />
+        </LinearLayout>
+    </LinearLayout>
+</com.amar.library.ui.StickyScrollView>
