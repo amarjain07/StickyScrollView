@@ -1,7 +1,6 @@
 package com.amar.library.ui;
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -66,7 +65,7 @@ public class StickyScrollView extends ScrollView implements IStickyScrollPresent
     public void freeHeader() {
         if (stickyHeaderView != null) {
             stickyHeaderView.setTranslationY(0);
-            ViewCompat.setTranslationZ(stickyHeaderView, 0);
+            PropertySetter.setTranslationZ(stickyHeaderView, 0);
         }
     }
 
@@ -81,7 +80,7 @@ public class StickyScrollView extends ScrollView implements IStickyScrollPresent
     public void stickHeader(int translationY) {
         if (stickyHeaderView != null) {
             stickyHeaderView.setTranslationY(translationY);
-            ViewCompat.setTranslationZ(stickyHeaderView, 1);
+            PropertySetter.setTranslationZ(stickyHeaderView, 1);
         }
     }
 
