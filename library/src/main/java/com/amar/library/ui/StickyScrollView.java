@@ -1,6 +1,8 @@
 package com.amar.library.ui;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -22,8 +24,12 @@ public class StickyScrollView extends ScrollView implements IStickyScrollPresent
     private View stickyFooterView;
     private View stickyHeaderView;
 
+    private static final String SCROLL_STATE = "scroll_state";
+    private static final String SUPER_STATE = "super_state";
+
 
     private StickyScrollPresenter mStickyScrollPresenter;
+    int[] updatedFooterLocation = new int[2];
 
     public StickyScrollView(Context context) {
         this(context, null);
@@ -37,14 +43,31 @@ public class StickyScrollView extends ScrollView implements IStickyScrollPresent
         super(context, attrs, defStyle);
         IScreenInfoProvider screenInfoProvider = new ScreenInfoProvider(context);
         IResourceProvider resourceProvider = new ResourceProvider(context, attrs, R.styleable.StickyScrollView);
-        mStickyScrollPresenter = new StickyScrollPresenter(screenInfoProvider, resourceProvider);
+        mStickyScrollPresenter = new StickyScrollPresenter(this, screenInfoProvider, resourceProvider);
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                mStickyScrollPresenter.onGlobalLayoutChange(StickyScrollView.this, R.styleable.StickyScrollView_stickyHeader, R.styleable.StickyScrollView_stickyFooter);
+                mStickyScrollPresenter.onGlobalLayoutChange(R.styleable.StickyScrollView_stickyHeader, R.styleable.StickyScrollView_stickyFooter);
                 getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        if(stickyFooterView != null && !changed) {
+            stickyFooterView.getLocationInWindow(updatedFooterLocation);
+            mStickyScrollPresenter.recomputeFooterLocation(getRelativeTop(stickyFooterView), updatedFooterLocation[1]);
+        }
+    }
+
+    private int getRelativeTop(View myView) {
+        if (myView.getParent() == myView.getRootView()) {
+            return myView.getTop();
+        } else {
+            return myView.getTop() + getRelativeTop((View) myView.getParent());
+        }
     }
 
     @Override
@@ -56,9 +79,7 @@ public class StickyScrollView extends ScrollView implements IStickyScrollPresent
     @Override
     public void initFooterView(int id) {
         stickyFooterView = findViewById(id);
-        int initialStickyFooterLocation[] = new int[2];
-        stickyFooterView.getLocationInWindow(initialStickyFooterLocation);
-        mStickyScrollPresenter.initStickyFooter(stickyFooterView.getMeasuredHeight(), initialStickyFooterLocation);
+        mStickyScrollPresenter.initStickyFooter(stickyFooterView.getMeasuredHeight(), getRelativeTop(stickyFooterView));
     }
 
     @Override
@@ -122,6 +143,26 @@ public class StickyScrollView extends ScrollView implements IStickyScrollPresent
         if (scrollViewListener != null) {
             scrollViewListener.onScrollStopped(clampedY);
         }
+    }
+
+    @Override
+    public Parcelable onSaveInstanceState()
+    {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(SUPER_STATE, super.onSaveInstanceState());
+        bundle.putBoolean(SCROLL_STATE, mStickyScrollPresenter.mScrolled);
+        return bundle;
+    }
+
+    @Override
+    public void onRestoreInstanceState(Parcelable state)
+    {
+        if (state instanceof Bundle) {
+            Bundle bundle = (Bundle) state;
+            mStickyScrollPresenter.mScrolled = bundle.getBoolean(SCROLL_STATE);
+            state = bundle.getParcelable(SUPER_STATE);
+        }
+        super.onRestoreInstanceState(state);
     }
 
 }

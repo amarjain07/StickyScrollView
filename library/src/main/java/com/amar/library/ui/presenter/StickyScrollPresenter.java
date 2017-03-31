@@ -19,19 +19,20 @@ public class StickyScrollPresenter {
 
     private int mStickyFooterHeight;
     private int mStickyFooterInitialTranslation;
-    private int[] mStickyFooterInitialLocation;
+    private int mStickyFooterInitialLocation;
 
     private int mStickyHeaderInitialLocation;
     private boolean mIsFooterSticky;
     private boolean mIsHeaderSticky;
+    public boolean mScrolled;
 
-    public StickyScrollPresenter(IScreenInfoProvider screenInfoProvider, IResourceProvider typedArrayResourceProvider) {
+    public StickyScrollPresenter(IStickyScrollPresentation stickyScrollPresentation, IScreenInfoProvider screenInfoProvider, IResourceProvider typedArrayResourceProvider) {
         mDeviceHeight = screenInfoProvider.getScreenHeight();
         mTypedArrayResourceProvider = typedArrayResourceProvider;
+        mStickyScrollPresentation = stickyScrollPresentation;
     }
 
-    public void onGlobalLayoutChange(IStickyScrollPresentation stickyScrollPresentation, @StyleableRes int headerRes, @StyleableRes int footerRes){
-        mStickyScrollPresentation = stickyScrollPresentation;
+    public void onGlobalLayoutChange(@StyleableRes int headerRes, @StyleableRes int footerRes){
         int headerId = mTypedArrayResourceProvider.getResourceId(headerRes);
         if(headerId != 0) {
             mStickyScrollPresentation.initHeaderView(headerId);
@@ -43,12 +44,11 @@ public class StickyScrollPresenter {
         mTypedArrayResourceProvider.recycle();
     }
 
-    public void initStickyFooter(int measuredHeight, int[] initialStickyFooterLocation) {
+    public void initStickyFooter(int measuredHeight, int initialStickyFooterLocation) {
         mStickyFooterHeight = measuredHeight;
         mStickyFooterInitialLocation = initialStickyFooterLocation;
-
-        if (mStickyFooterInitialLocation[1] > mDeviceHeight - mStickyFooterHeight) {
-            mStickyFooterInitialTranslation = mDeviceHeight - initialStickyFooterLocation[1] - mStickyFooterHeight;
+        mStickyFooterInitialTranslation = mDeviceHeight - initialStickyFooterLocation - mStickyFooterHeight;
+        if (mStickyFooterInitialLocation > mDeviceHeight - mStickyFooterHeight) {
             mStickyScrollPresentation.stickFooter(mStickyFooterInitialTranslation);
             mIsFooterSticky = true;
         }
@@ -59,12 +59,13 @@ public class StickyScrollPresenter {
     }
 
     public void onScroll(int scrollY){
+        mScrolled = true;
         handleFooterStickiness(scrollY);
         handleHeaderStickiness(scrollY);
     }
 
     private void handleFooterStickiness(int scrollY) {
-        if (scrollY > mStickyFooterInitialLocation[1] - mDeviceHeight + mStickyFooterHeight) {
+        if (scrollY > mStickyFooterInitialLocation - mDeviceHeight + mStickyFooterHeight) {
             mStickyScrollPresentation.freeFooter();
             mIsFooterSticky = false;
         } else {
@@ -89,5 +90,21 @@ public class StickyScrollPresenter {
 
     public boolean isHeaderSticky() {
         return mIsHeaderSticky;
+    }
+
+    public void recomputeFooterLocation(int footerTop, int footerLocation){
+        if(mScrolled){
+            mStickyFooterInitialTranslation = mDeviceHeight - footerTop - mStickyFooterHeight;
+            mStickyFooterInitialLocation = footerTop;
+            if (footerLocation > mDeviceHeight - mStickyFooterHeight) {
+                mStickyScrollPresentation.stickFooter(mStickyFooterInitialTranslation);
+                mIsFooterSticky = true;
+            }else{
+                mStickyScrollPresentation.freeFooter();
+                mIsFooterSticky = false;
+            }
+        }else{
+            initStickyFooter(mStickyFooterHeight, footerTop);
+        }
     }
 }
