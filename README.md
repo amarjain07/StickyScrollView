@@ -16,7 +16,7 @@ Add jitpack to your root `build.gradle`
 Add the dependency
 ```
 	dependencies {
-	        compile 'com.github.amarjain07:StickyScrollView:1.0.1'
+	        compile 'com.github.amarjain07:StickyScrollView:1.0.2'
 	}
 ```
 
