@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/main_shoe_picture"
             android:layout_width="match_parent"
             android:layout_height="420dp"
             android:src="@drawable/nike" />
@@ -51,22 +52,23 @@
             android:background="@android:color/darker_gray" />
 
         <LinearLayout
-            android:id="@+id/offer"
+            android:id="@+id/other_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
             android:orientation="vertical"
             android:padding="15dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Offer"
+                android:text="Check other product"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Offer Desc goes here"
+                android:text="Other product info goes here"
                 android:textStyle="italic" />
         </LinearLayout>
 
