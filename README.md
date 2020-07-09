@@ -25,25 +25,25 @@ Add the dependency
 	<com.amar.library.ui.StickyScrollView
    		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:layout_width="match_parent"
-    	android:layout_height="match_parent"
+    		android:layout_height="match_parent"
 		app:stickyHeader="@+id/titleLayout"
-    	app:stickyFooter="@+id/buttonLayout">
+    		app:stickyFooter="@+id/buttonLayout">
 		<LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            		android:layout_width="match_parent"
+            		android:layout_height="wrap_content">
 		    <LinearLayout
             		android:id="@+id/titleLayout"
             		android:layout_width="match_parent"
             		android:layout_height="wrap_content">
 			        ...
-        	</LinearLayout>		
+        	    </LinearLayout>		
 		    <LinearLayout
             		android:id="@+id/buttonLayout"
             		android:layout_width="match_parent"
             		android:layout_height="wrap_content">
 			        ...
+        	    </LinearLayout>
         	</LinearLayout>
-        </LinearLayout>
 		...
 	</com.amar.library.ui.StickyScrollView>
 	
