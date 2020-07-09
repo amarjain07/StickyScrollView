@@ -2,7 +2,7 @@ package com.amar.library.provider;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.StyleableRes;
+import androidx.annotation.StyleableRes;
 import android.util.AttributeSet;
 
 import com.amar.library.provider.interfaces.IResourceProvider;

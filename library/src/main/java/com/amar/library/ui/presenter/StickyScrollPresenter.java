@@ -1,6 +1,6 @@
 package com.amar.library.ui.presenter;
 
-import android.support.annotation.StyleableRes;
+import androidx.annotation.StyleableRes;
 
 import com.amar.library.provider.interfaces.IResourceProvider;
 import com.amar.library.ui.presentation.IStickyScrollPresentation;
