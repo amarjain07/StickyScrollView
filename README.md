@@ -3,6 +3,7 @@ Sticky header and footer for android ScrollView.
 
 ## UPDATE
 Kotlin
+
 Fixed : Scroll Issue with recycler View
 
 ### Install
