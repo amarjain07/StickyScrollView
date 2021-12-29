@@ -13,4 +13,5 @@ public interface IStickyScrollPresentation {
     void initHeaderView(int id);
     void initFooterView(int id);
 
+    int getCurrentScrollYPos();
 }

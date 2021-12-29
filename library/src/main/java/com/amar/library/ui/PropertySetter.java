@@ -1,10 +1,8 @@
 package com.amar.library.ui;
 
 import android.os.Build;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 /**
  * Created by Amar Jain on 28/03/17.

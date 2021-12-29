@@ -1,6 +1,6 @@
 package com.amar.library.provider.interfaces;
 
-import android.support.annotation.StyleableRes;
+import androidx.annotation.StyleableRes;
 
 /**
  * Created by Amar Jain on 17/03/17.

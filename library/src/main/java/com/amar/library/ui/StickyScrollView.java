@@ -16,7 +16,6 @@ import com.amar.library.ui.presenter.StickyScrollPresenter;
 import com.amar.library.provider.ScreenInfoProvider;
 import com.amar.library.provider.interfaces.IScreenInfoProvider;
 
-
 public class StickyScrollView extends NestedScrollView implements IStickyScrollPresentation {
     private static final String TAG = StickyScrollView.class.getSimpleName();
     private IScrollViewListener scrollViewListener;
@@ -27,9 +26,7 @@ public class StickyScrollView extends NestedScrollView implements IStickyScrollP
     private static final String SCROLL_STATE = "scroll_state";
     private static final String SUPER_STATE = "super_state";
 
-
     private StickyScrollPresenter mStickyScrollPresenter;
-    int[] updatedFooterLocation = new int[2];
 
     public StickyScrollView(Context context) {
         this(context, null);
@@ -56,9 +53,12 @@ public class StickyScrollView extends NestedScrollView implements IStickyScrollP
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        if(stickyFooterView != null && !changed) {
-            stickyFooterView.getLocationInWindow(updatedFooterLocation);
-            mStickyScrollPresenter.recomputeFooterLocation(getRelativeTop(stickyFooterView), updatedFooterLocation[1]);
+        if (stickyFooterView != null && !changed) {
+            mStickyScrollPresenter.recomputeFooterLocation(getRelativeTop(stickyFooterView));
+        }
+
+        if (stickyHeaderView != null) {
+            mStickyScrollPresenter.recomputeHeaderLocation(stickyHeaderView.getTop());
         }
     }
 
@@ -113,6 +113,11 @@ public class StickyScrollView extends NestedScrollView implements IStickyScrollP
     }
 
     @Override
+    public int getCurrentScrollYPos() {
+        return getScrollY();
+    }
+
+    @Override
     protected void onScrollChanged(int mScrollX, int mScrollY, int oldX, int oldY) {
         super.onScrollChanged(mScrollX, mScrollY, oldX, oldY);
         mStickyScrollPresenter.onScroll(mScrollY);
@@ -146,8 +151,7 @@ public class StickyScrollView extends NestedScrollView implements IStickyScrollP
     }
 
     @Override
-    public Parcelable onSaveInstanceState()
-    {
+    public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(SUPER_STATE, super.onSaveInstanceState());
         bundle.putBoolean(SCROLL_STATE, mStickyScrollPresenter.mScrolled);
@@ -155,8 +159,7 @@ public class StickyScrollView extends NestedScrollView implements IStickyScrollP
     }
 
     @Override
-    public void onRestoreInstanceState(Parcelable state)
-    {
+    public void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             mStickyScrollPresenter.mScrolled = bundle.getBoolean(SCROLL_STATE);
@@ -164,5 +167,4 @@ public class StickyScrollView extends NestedScrollView implements IStickyScrollP
         }
         super.onRestoreInstanceState(state);
     }
-
 }
