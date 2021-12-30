@@ -5,48 +5,52 @@ Sticky header and footer for android ScrollView.
 
 ### Install
 
-Add jitpack to your root `build.gradle`
-```
-	allprojects {
-		repositories {
-			...
-			maven { url "https://jitpack.io" }
-		}
+Add jitpack to your root's `build.gradle`
+```groovy
+allprojects {
+    repositories {
+	    maven { url "https://jitpack.io" }
 	}
+}
 ```
 
 Add the dependency
 ```groovy
-	dependencies {
-	        implementation 'com.github.amarjain07:StickyScrollView:<latest-version>'
-	}
+dependencies {
+    implementation 'com.github.amarjain07:StickyScrollView:<latest-version>'
+}
 ```
 
 ### Usage
 ```xml
-	<com.amar.library.ui.StickyScrollView
-   		xmlns:app="http://schemas.android.com/apk/res-auto"
-		android:layout_width="match_parent"
-    	android:layout_height="match_parent"
-		app:stickyHeader="@+id/titleLayout"
-        app:stickyFooter="@+id/buttonLayout">
-		<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<com.amar.library.ui.StickyScrollView
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:stickyHeader="@+id/title"
+    app:stickyFooter="@+id/buttons">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="15dp">
+            ...
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-		    <LinearLayout
-                android:id="@+id/titleLayout"
-            	android:layout_width="match_parent"
-            	android:layout_height="wrap_content">
-			        ...
-        	</LinearLayout>
-		    <LinearLayout
-            		android:id="@+id/buttonLayout"
-            		android:layout_width="match_parent"
-            		android:layout_height="wrap_content">
-			        ...
-        	</LinearLayout>
+            ...
         </LinearLayout>
-	</com.amar.library.ui.StickyScrollView>
+    </LinearLayout>
+</com.amar.library.ui.StickyScrollView>
 ```
 
 ### Demo
