@@ -157,7 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:text="More colors"
+            android:text="@string/more_colors"
             android:textStyle="bold" />
 
         <LinearLayout

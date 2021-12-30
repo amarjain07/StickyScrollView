@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.Point
 import com.amar.library.provider.interfaces.IScreenInfoProvider
 
-class ScreenInfoProvider(private val mContext: Context) : IScreenInfoProvider {
+internal class ScreenInfoProvider(private val mContext: Context) : IScreenInfoProvider {
     private val deviceDimension: Point
         get() {
             val lPoint = Point()

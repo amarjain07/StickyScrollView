@@ -45,7 +45,9 @@ class StickyScrollView @JvmOverloads constructor(
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
         stickyFooterView?.let {
-            mStickyScrollPresenter.recomputeFooterLocation(getRelativeTop(it))
+            if(!changed) {
+                mStickyScrollPresenter.recomputeFooterLocation(getRelativeTop(it))
+            }
         }
         stickyHeaderView?.let {
             mStickyScrollPresenter.recomputeHeaderLocation(it.top)

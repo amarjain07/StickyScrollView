@@ -4,7 +4,7 @@ import android.os.Build
 import android.view.View
 import androidx.core.view.ViewCompat
 
-object PropertySetter {
+internal object PropertySetter {
     fun setTranslationZ(view: View?, translationZ: Float) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view?.let {

@@ -5,7 +5,7 @@ import com.amar.library.provider.interfaces.IResourceProvider
 import com.amar.library.provider.interfaces.IScreenInfoProvider
 import com.amar.library.ui.presentation.IStickyScrollPresentation
 
-class StickyScrollPresenter(
+internal class StickyScrollPresenter(
     stickyScrollPresentation: IStickyScrollPresentation,
     private val screenInfoProvider: IScreenInfoProvider,
     typedArrayResourceProvider: IResourceProvider
