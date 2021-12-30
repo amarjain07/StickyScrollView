@@ -1,10 +1,7 @@
 # StickyScrollView
 Sticky header and footer for android ScrollView.
 
-### UPDATE
-
-Migrated to Kotlin
-Fix : Scroll Issue with RecyclerView
+[![](https://jitpack.io/v/amarjain07/StickyScrollView.svg)](https://jitpack.io/#amarjain07/StickyScrollView)
 
 ### Install
 
@@ -19,44 +16,41 @@ Add jitpack to your root `build.gradle`
 ```
 
 Add the dependency
-```
+```groovy
 	dependencies {
-	        implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
+	        implementation 'com.github.amarjain07:StickyScrollView:<latest-version>'
 	}
 ```
 
 ### Usage
-```
+```xml
 	<com.amar.library.ui.StickyScrollView
    		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:layout_width="match_parent"
-    		android:layout_height="match_parent"
+    	android:layout_height="match_parent"
 		app:stickyHeader="@+id/titleLayout"
-    		app:stickyFooter="@+id/buttonLayout">
+        app:stickyFooter="@+id/buttonLayout">
 		<LinearLayout
-            		android:layout_width="match_parent"
-            		android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 		    <LinearLayout
-            		android:id="@+id/titleLayout"
-            		android:layout_width="match_parent"
-            		android:layout_height="wrap_content">
+                android:id="@+id/titleLayout"
+            	android:layout_width="match_parent"
+            	android:layout_height="wrap_content">
 			        ...
-        	    </LinearLayout>		
+        	</LinearLayout>
 		    <LinearLayout
             		android:id="@+id/buttonLayout"
             		android:layout_width="match_parent"
             		android:layout_height="wrap_content">
 			        ...
-        	    </LinearLayout>
         	</LinearLayout>
-		...
+        </LinearLayout>
 	</com.amar.library.ui.StickyScrollView>
-	
 ```
 
 ### Demo
 ![StickyScrollViewGif](demo/StickyScroll.gif)
-
 
 License
 -------
