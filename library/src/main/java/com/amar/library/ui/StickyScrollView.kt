@@ -45,9 +45,7 @@ class StickyScrollView @JvmOverloads constructor(
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
         stickyFooterView?.let {
-            if (!changed) {
-                mStickyScrollPresenter.recomputeFooterLocation(getRelativeTop(it))
-            }
+            mStickyScrollPresenter.recomputeFooterLocation(getRelativeTop(it))
         }
         stickyHeaderView?.let {
             mStickyScrollPresenter.recomputeHeaderLocation(it.top)
@@ -117,22 +115,25 @@ class StickyScrollView @JvmOverloads constructor(
 
     public override fun onSaveInstanceState(): Parcelable {
         val bundle = Bundle()
-        bundle.putParcelable(SUPER_STATE, super.onSaveInstanceState())
-        bundle.putBoolean(SCROLL_STATE, mStickyScrollPresenter.mScrolled)
+        bundle.putParcelable(STATE_SUPER, super.onSaveInstanceState())
+        bundle.putBoolean(STATE_SCROLL, mStickyScrollPresenter.mScrolled)
+        bundle.putInt(STATE_NAV_BAR_HEIGHT, mStickyScrollPresenter.mNavigationBarInitialHeight)
         return bundle
     }
 
     public override fun onRestoreInstanceState(state: Parcelable) {
         if (state is Bundle) {
-            mStickyScrollPresenter.mScrolled = state.getBoolean(SCROLL_STATE)
-            super.onRestoreInstanceState(state.getParcelable(SUPER_STATE))
+            mStickyScrollPresenter.mNavigationBarInitialHeight = state.getInt(STATE_NAV_BAR_HEIGHT)
+            mStickyScrollPresenter.mScrolled = state.getBoolean(STATE_SCROLL)
+            super.onRestoreInstanceState(state.getParcelable(STATE_SUPER))
             return
         }
         super.onRestoreInstanceState(state)
     }
 
     companion object {
-        private const val SCROLL_STATE = "scroll_state"
-        private const val SUPER_STATE = "super_state"
+        private const val STATE_SCROLL = "scroll_state"
+        private const val STATE_SUPER = "super_state"
+        private const val STATE_NAV_BAR_HEIGHT = "nav_bar_height_state"
     }
 }

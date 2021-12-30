@@ -1,6 +1,6 @@
 ext {
     gradlePluginVersion = '7.0.4'
-    projectMinSdkVersion = 21
+    projectMinSdkVersion = 16
     compileVersionSdk = 30
     targetSdkVersion = compileVersionSdk
     projectVersionCode = 1

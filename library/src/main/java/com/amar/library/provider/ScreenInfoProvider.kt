@@ -17,4 +17,13 @@ class ScreenInfoProvider(private val mContext: Context) : IScreenInfoProvider {
         get() = deviceDimension.y
     override val screenWidth: Int
         get() = deviceDimension.x
+
+    override val navigationBarHeight: Int
+        get() {
+            val resourceId: Int =
+                mContext.resources.getIdentifier("navigation_bar_height", "dimen", "android")
+            return if (resourceId > 0) {
+                mContext.resources.getDimensionPixelSize(resourceId)
+            } else 0
+        }
 }

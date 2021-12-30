@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">StickyScrollView</string>
+    <string name="product_title">Product Title</string>
+    <string name="product_description_goes_here">Product Description goes here</string>
+    <string name="check_other_product">Check other product</string>
+    <string name="other_product_info_goes_here">Other product info goes here</string>
+    <string name="product_similar">Product Similar</string>
+    <string name="similar_items_go_here">Similar items go here</string>
+    <string name="save">SAVE</string>
+    <string name="buy">BUY</string>
+    <string name="other_product_related_info_goes_here">Other product related info goes here!</string>
+    <string name="you_can_add_more_data_here">You can add more data here</string>
 </resources>

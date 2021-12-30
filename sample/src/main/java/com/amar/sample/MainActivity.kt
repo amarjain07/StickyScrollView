@@ -50,13 +50,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             redShoeVisible = false
             mainShoeView!!.setImageResource(R.drawable.similar_1)
             val params = mainShoeView!!.layoutParams as LinearLayout.LayoutParams
-            params.height = dpToPixel(320).toInt()
+            params.height = dpToPixel(420).toInt()
             mainShoeView!!.layoutParams = params
         } else {
             redShoeVisible = true
             mainShoeView!!.setImageResource(R.drawable.nike)
             val params = mainShoeView!!.layoutParams as LinearLayout.LayoutParams
-            params.height = dpToPixel(420).toInt()
+            params.height = dpToPixel(520).toInt()
             mainShoeView!!.layoutParams = params
         }
     }

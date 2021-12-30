@@ -5,10 +5,9 @@ import com.amar.library.provider.interfaces.IResourceProvider
 import com.amar.library.provider.interfaces.IScreenInfoProvider
 import com.amar.library.ui.presentation.IStickyScrollPresentation
 
-
 class StickyScrollPresenter(
     stickyScrollPresentation: IStickyScrollPresentation,
-    screenInfoProvider: IScreenInfoProvider,
+    private val screenInfoProvider: IScreenInfoProvider,
     typedArrayResourceProvider: IResourceProvider
 ) {
     private val mTypedArrayResourceProvider: IResourceProvider = typedArrayResourceProvider
@@ -18,12 +17,17 @@ class StickyScrollPresenter(
     private var mStickyFooterInitialTranslation = 0
     private var mStickyFooterInitialLocation = 0
     private var mStickyHeaderInitialLocation = 0
+    private var navBarHeightDiff = 0
+    var mNavigationBarInitialHeight = screenInfoProvider.navigationBarHeight
     var isFooterSticky = false
         private set
     var isHeaderSticky = false
         private set
     var mScrolled = false
     fun onGlobalLayoutChange(@StyleableRes headerRes: Int, @StyleableRes footerRes: Int) {
+        val currentNavBarHeight = screenInfoProvider.navigationBarHeight
+        navBarHeightDiff =  mNavigationBarInitialHeight - currentNavBarHeight
+        mNavigationBarInitialHeight = currentNavBarHeight
         val headerId = mTypedArrayResourceProvider.getResourceId(headerRes)
         if (headerId != 0) {
             mStickyScrollPresentation.initHeaderView(headerId)
@@ -39,9 +43,9 @@ class StickyScrollPresenter(
         measuredHeight?.let {
             mStickyFooterHeight = it
         }
-        mStickyFooterInitialLocation = initialStickyFooterLocation
+        mStickyFooterInitialLocation = initialStickyFooterLocation - navBarHeightDiff
         mStickyFooterInitialTranslation =
-            mDeviceHeight - initialStickyFooterLocation - mStickyFooterHeight
+            mDeviceHeight - mStickyFooterInitialLocation - mStickyFooterHeight
         if (mStickyFooterInitialLocation > mDeviceHeight - mStickyFooterHeight) {
             mStickyScrollPresentation.stickFooter(mStickyFooterInitialTranslation)
             isFooterSticky = true
@@ -63,29 +67,29 @@ class StickyScrollPresenter(
     }
 
     private fun handleFooterStickiness(scrollY: Int) {
-        if (scrollY > mStickyFooterInitialLocation - mDeviceHeight + mStickyFooterHeight) {
+        isFooterSticky = if (scrollY > mStickyFooterInitialLocation - mDeviceHeight + mStickyFooterHeight) {
             mStickyScrollPresentation.freeFooter()
-            isFooterSticky = false
+            false
         } else {
             mStickyScrollPresentation.stickFooter(mStickyFooterInitialTranslation + scrollY)
-            isFooterSticky = true
+            true
         }
     }
 
     private fun handleHeaderStickiness(scrollY: Int) {
-        if (scrollY > mStickyHeaderInitialLocation) {
+        isHeaderSticky = if (scrollY > mStickyHeaderInitialLocation) {
             mStickyScrollPresentation.stickHeader(scrollY - mStickyHeaderInitialLocation)
-            isHeaderSticky = true
+            true
         } else {
             mStickyScrollPresentation.freeHeader()
-            isHeaderSticky = false
+            false
         }
     }
 
     fun recomputeFooterLocation(footerTop: Int) {
         if (mScrolled) {
-            mStickyFooterInitialTranslation = mDeviceHeight - footerTop - mStickyFooterHeight
-            mStickyFooterInitialLocation = footerTop
+            mStickyFooterInitialLocation = footerTop - navBarHeightDiff
+            mStickyFooterInitialTranslation = mDeviceHeight - mStickyFooterInitialLocation - mStickyFooterHeight
         } else {
             initStickyFooter(mStickyFooterHeight, footerTop)
         }
@@ -96,5 +100,4 @@ class StickyScrollPresenter(
         initStickyHeader(headerTop)
         handleHeaderStickiness(mStickyScrollPresentation.currentScrollYPos)
     }
-
 }

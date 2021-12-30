@@ -17,7 +17,8 @@
         <ImageView
             android:id="@+id/main_shoe_picture"
             android:layout_width="match_parent"
-            android:layout_height="420dp"
+            android:layout_height="520dp"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/nike" />
 
         <View
@@ -36,13 +37,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Title"
+                android:text="@string/product_title"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Description goes here"
+                android:text="@string/product_description_goes_here"
                 android:textStyle="italic" />
         </LinearLayout>
 
@@ -62,13 +63,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Check other product"
+                android:text="@string/check_other_product"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Other product info goes here"
+                android:text="@string/other_product_info_goes_here"
                 android:textStyle="italic" />
         </LinearLayout>
 
@@ -86,13 +87,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Product Similar"
+                android:text="@string/product_similar"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Similar goes here"
+                android:text="@string/similar_items_go_here"
                 android:textStyle="italic" />
         </LinearLayout>
 
@@ -107,12 +108,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#535766"
-                android:drawableLeft="@mipmap/ic_wishlist"
                 android:gravity="center"
                 android:padding="15dp"
-                android:text="SAVE"
+                android:text="@string/save"
                 android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:drawableLeftCompat="@mipmap/ic_wishlist" />
 
             <TextView
                 android:id="@+id/buy"
@@ -120,12 +121,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#0BC6A0"
-                android:drawableLeft="@mipmap/ic_bag"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="BUY"
+                android:text="@string/buy"
                 android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:drawableLeftCompat="@mipmap/ic_bag" />
         </LinearLayout>
 
         <LinearLayout
@@ -137,13 +138,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Other product related info goes here!"
+                android:text="@string/other_product_related_info_goes_here"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="You can add more data here"
+                android:text="@string/you_can_add_more_data_here"
                 android:textStyle="italic" />
         </LinearLayout>
 
@@ -168,12 +169,14 @@
                 android:layout_width="0dp"
                 android:layout_height="220dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/app_name"
                 android:src="@drawable/similar_1" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="620dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/app_name"
                 android:src="@drawable/similar_2" />
         </LinearLayout>
     </LinearLayout>
