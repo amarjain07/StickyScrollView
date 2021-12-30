@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amar.library.ui.StickyScrollView
+import com.amar.library.ui.interfaces.IScrollViewListener
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var scrollView: StickyScrollView? = null
@@ -17,11 +18,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         scrollView = findViewById<View>(R.id.scrollView) as StickyScrollView
+        val titleHeader = findViewById<View>(R.id.title)
+        scrollView?.setScrollViewListener(object: IScrollViewListener{
+            override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
+                if(scrollView?.isHeaderSticky == true) {
+                    titleHeader.setBackgroundResource(android.R.color.white)
+                } else {
+                    titleHeader.setBackgroundResource(android.R.color.transparent)
+                }
+            }
+        })
         findViewById<View>(R.id.buy).setOnClickListener(this)
         findViewById<View>(R.id.save).setOnClickListener(this)
         findViewById<View>(R.id.title).setOnClickListener(this)
         findViewById<View>(R.id.other_product).setOnClickListener(this)
         mainShoeView = findViewById(R.id.main_shoe_picture)
+        scrollView?.setFooterView(R.id.buttons)
     }
 
     override fun onClick(v: View) {
