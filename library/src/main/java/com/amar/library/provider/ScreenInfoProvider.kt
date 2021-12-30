@@ -3,10 +3,7 @@ package com.amar.library.provider
 import android.content.Context
 import android.graphics.Point
 import com.amar.library.provider.interfaces.IScreenInfoProvider
-import javax.annotation.ParametersAreNonnullByDefault
 
-
-@ParametersAreNonnullByDefault
 class ScreenInfoProvider(private val mContext: Context) : IScreenInfoProvider {
     private val deviceDimension: Point
         get() {

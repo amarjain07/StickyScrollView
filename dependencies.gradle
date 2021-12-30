@@ -1,0 +1,88 @@
+ext {
+    gradlePluginVersion = '7.0.4'
+    projectMinSdkVersion = 21
+    compileVersionSdk = 30
+    targetSdkVersion = compileVersionSdk
+    projectVersionCode = 1
+    projectVersionName = "0.0.1"
+
+    kotlinVersion = '1.6.10'
+    kotlinSdk = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    androidXCoreVersion = '1.3.2'
+    androidXVersion = '1.1.0'
+    androidXCompatVersion = '1.2.0'
+    androidXConstraintLayoutVersion = '2.0.4'
+    androidXMultidexVersion = '2.0.0'
+    androidSupportV4Version = "1.0.0"
+    droid = [
+            androidSupportV4        : "androidx.legacy:legacy-support-v4:$androidSupportV4Version",
+            androidCardview         : "androidx.cardview:cardview:$androidSupportV4Version",
+            fragment                : "androidx.fragment:fragment:$androidSupportV4Version",
+
+            androidAppCompatV7      : "androidx.appcompat:appcompat:$androidXCompatVersion",
+            coreX                   : "androidx.core:core-ktx:$androidXCoreVersion",
+
+            androidDesign           : "com.google.android.material:material:$androidXVersion",
+            androidRecyclerview     : "androidx.recyclerview:recyclerview:$androidXVersion",
+            androidSupportAnnotation: "androidx.annotation:annotation:$androidXVersion",
+            
+            androidConstraint       : "androidx.constraintlayout:constraintlayout:$androidXConstraintLayoutVersion",
+            androidMultidex         : "androidx.multidex:multidex:$androidXMultidexVersion",
+            databinding             : "androidx.databinding:databinding-common:$gradlePluginVersion",
+            databindingBase         : "androidx.databinding:databinding-runtime:$gradlePluginVersion"
+    ]
+
+    // Only include dependencies to be added to the library/AAR
+    internalLibs = [
+            androidAppCompatV7      : "androidx.appcompat:appcompat:$androidXCompatVersion",
+            coreX                   : "androidx.core:core-ktx:$androidXCoreVersion"
+    ]
+
+    daggerVersion = '2.29.1'
+    di = [
+            dagger       : "com.google.dagger:dagger:$daggerVersion",
+            daggerAndroid: "com.google.dagger:dagger-android-support:$daggerVersion"
+    ]
+
+    glideVersion = "4.12.0"
+    externalLibs = [
+            glide        : "com.github.bumptech.glide:glide:$glideVersion"
+    ]
+
+    kaptLibs = [
+            daggerCompiler        : "com.google.dagger:dagger-compiler:$daggerVersion",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:$daggerVersion",
+            glideProcessor        : "com.github.bumptech.glide:compiler:$glideVersion"
+    ]
+
+    junit5 = "5.6.2"
+    mockitoVersion = "3.2.4"
+    mockitoKotlinVersion = "1.6.0"
+    archCoreTesting = "2.1.0"
+    testLibs = [
+            junitJupiterApi   : "org.junit.jupiter:junit-jupiter-api:$junit5",
+            junitJupiterEngine: "org.junit.jupiter:junit-jupiter-engine:$junit5",
+            junitJupiterParams: "org.junit.jupiter:junit-jupiter-params:$junit5",
+            mockito           : "org.mockito:mockito-core:$mockitoVersion",
+            mokitoKotlin      : "com.nhaarman:mockito-kotlin:$mockitoKotlinVersion",
+            coreTesting       : "androidx.arch.core:core-testing:$archCoreTesting"
+    ]
+    mockitoAndroid = "org.mockito:mockito-android:" + mockitoVersion
+
+    espressoVersion = "3.2.0"
+    testVersion = "1.2.0"
+    junitTestVersion = "1.1.1"
+    mockWebServerVersion = "3.12.1"
+    idlingResourceVersion = "1.0.0"
+    uiTestLibs = [
+            espressoCore   : "androidx.test.espresso:espresso-core:$espressoVersion",
+            espressoContrib: "androidx.test.espresso:espresso-contrib:$espressoVersion",
+            espressoIntents: "androidx.test.espresso:espresso-intents:$espressoVersion",
+            testRunner     : "androidx.test:runner:$testVersion",
+            testRules      : "androidx.test:rules:$testVersion",
+            junitTest      : "androidx.test.ext:junit:$junitTestVersion",
+            mockWebServer  : "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion",
+            idlingResource : "com.jakewharton.espresso:okhttp3-idling-resource:$idlingResourceVersion"
+    ]
+}
