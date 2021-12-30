@@ -1,5 +1,6 @@
 package com.amar.sample
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
@@ -38,11 +39,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.buy -> Toast.makeText(
-                this,
-                if (scrollView!!.isFooterSticky) "Footer is Sticky" else "Footer is not sticky",
-                Toast.LENGTH_SHORT
-            ).show()
+            R.id.buy -> {
+                startActivity(Intent(this, ViewPagerActivity::class.java))
+            }
             R.id.save -> Toast.makeText(
                 this,
                 if (scrollView!!.isFooterSticky) "Footer is Sticky" else "Footer is not sticky",
