@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'maven-publish'
 }
+apply from: 'publish.gradle'
 
 android {
     compileSdkVersion compileVersionSdk

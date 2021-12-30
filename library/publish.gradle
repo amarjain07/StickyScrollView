@@ -1,0 +1,14 @@
+apply plugin: 'maven-publish'
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'weekend.coder'
+                artifactId = 'sticky-scrollview'
+                version = '1.0.4'
+            }
+        }
+    }
+}
