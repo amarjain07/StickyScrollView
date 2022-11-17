@@ -26,17 +26,17 @@ internal class StickyScrollPresenter(
     var mScrolled = false
     fun onGlobalLayoutChange(@StyleableRes headerRes: Int, @StyleableRes footerRes: Int) {
         val currentNavBarHeight = screenInfoProvider.navigationBarHeight
-        navBarHeightDiff =  mNavigationBarInitialHeight - currentNavBarHeight
+        navBarHeightDiff = mNavigationBarInitialHeight - currentNavBarHeight
         mNavigationBarInitialHeight = currentNavBarHeight
-        val headerId = mTypedArrayResourceProvider.getResourceId(headerRes)
+        val resources = mTypedArrayResourceProvider.getResourcesByIds(headerRes, footerRes)
+        val headerId = resources[0]
         if (headerId != 0) {
             mStickyScrollPresentation.initHeaderView(headerId)
         }
-        val footerId = mTypedArrayResourceProvider.getResourceId(footerRes)
+        val footerId = resources[1]
         if (footerId != 0) {
             mStickyScrollPresentation.initFooterView(footerId)
         }
-        mTypedArrayResourceProvider.recycle()
     }
 
     fun initStickyFooter(measuredHeight: Int?, initialStickyFooterLocation: Int) {
